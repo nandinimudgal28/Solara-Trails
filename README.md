@@ -30,4 +30,4 @@ To run the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/nandinimudgal28/zyra-tourism.git
+   git clone https://github.com/nandinimudgal28/solara trails.git
