@@ -1,5 +1,4 @@
 
-
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;800&family=Parisienne&family=Roboto&family=Teko:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
 
@@ -69,7 +68,7 @@ html {
 
 .site-purpose {
   padding: 3rem 10%;
-  background: transparent
+  background: transparent;
   text-align: center;
 }
 
@@ -86,6 +85,9 @@ html {
   line-height: 1.8;
   max-width: 800px;
   margin: 0 auto;
+}
+section {
+  padding: 3rem 1.5rem;
 }
 
 /*scrollbar*/
@@ -151,6 +153,10 @@ html {
   width: 100%;
   z-index: 100;
   padding: 0.5rem 1rem;
+}
+
+.navbar {
+  padding: 0.8rem 2rem;
 }
 
 .navbar-container {
@@ -219,6 +225,7 @@ html {
   color: #fc036b;
 }
 
+
 .cir_border {
   font-family: 'Montserrat', sans-serif;
   border: 2px hidden white;
@@ -250,7 +257,7 @@ html {
 }
 
 body {
-  padding-top: 80px; /* Adjust this if your navbar height changes */
+  padding-top: 80px;
 }
 
 /* Responsive Menu Icon (hidden by default) */
@@ -260,10 +267,17 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  section {
+    padding: 2rem 1rem;
+  }
+}
+
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* You can toggle visibility with JS */
+    display: none;
     flex-direction: column;
     background-color: #111;
     position: absolute;
@@ -277,7 +291,38 @@ body {
     display: block;
   }
 }
-
+.container, .content-wrapper {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.flight-section {
+  background: #62294c;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 2rem auto;
+  text-align: center;
+}
+.flight-section input, .flight-section button {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 8px;
+}
+.flight-section button {
+  background: #7f3f64;
+  color: #2b1623;
+  font-weight: bold;
+  cursor: pointer;
+}
+.flight-info {
+  margin-top: 1rem;
+  text-align: left;
+}
 
 /* Events */
 section {
@@ -398,13 +443,7 @@ section {
     object-fit: cover;
     margin: 10px 0;
     border-radius: 12px;
-}
-
-  width: 100%;
-  font-size: calc(2.2rem + 1vw);
-  letter-spacing: 0.3rem;
-  margin: auto;
-}
+}}
 
 .explore-content .line {
   margin-bottom: 50px;
@@ -479,6 +518,32 @@ section {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.tour-filters {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.tour-filters select {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+.tour-card {
+  padding: 1rem;
+  margin: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.tour-card:hover {
+  transform: translateY(-5px);
+}
+
+
 /*guide*/
 .guide-section {
   background: black;
@@ -529,6 +594,32 @@ section {
   color: #666;
 }
 
+.currency-box {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #602e41;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.currency-box input,
+.currency-box select,
+.currency-box button {
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  width: 90%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #7d465b;
+}
+#conversionResult {
+  color: #000; /* or try #333 for softer black */
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
 
 /* Packing Checklist Styling - Darker & Readable */
 .packing-section {
@@ -1284,8 +1375,22 @@ body.dark{
 		border-color:#fc036b;
 		transform: scale(.8);
 		
-	}
-	
+  }
+  .site-footer {
+  background-color: #111;
+  color: #1c1313;
+  text-align: center;
+  padding: 1rem 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  border-top: 1px solid #444;
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Dark Mode Styles Scroll Button  */
@@ -1419,6 +1524,9 @@ input[type=radio] {
 
 .site-footer p {
   margin: 0;
+}
+footer {
+  padding: 2rem 1rem;
 }
 
 
