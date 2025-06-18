@@ -1,5 +1,4 @@
 
-
 if (window.screen.width <= 1130) {
   function removeall() {
     $(".cir_border").css("border", "none");
@@ -175,3 +174,102 @@ document.getElementById("locationSelector").addEventListener("change", function 
     display.textContent = "";
   }
 });
+document.getElementById("typeFilter").addEventListener("change", function () {
+  const selected = this.value;
+  const cards = document.querySelectorAll(".tour-card");
+
+  cards.forEach(card => {
+    if (selected === "all" || card.dataset.type === selected) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+function convertCurrency() {
+  const amount = document.getElementById("amountINR").value;
+  const currency = document.getElementById("currencySelect").value;
+  const result = document.getElementById("conversionResult");
+
+  if (!amount || amount <= 0) {
+    result.innerText = "Please enter a valid amount.";
+    return;
+  }
+
+  fetch(`https://api.exchangerate-api.com/v4/latest/INR`)
+    .then(response => response.json())
+    .then(data => {
+      const rate = data.rates[currency];
+      const converted = (amount * rate).toFixed(2);
+      result.innerText = `${amount} INR = ${converted} ${currency}`;
+    })
+    .catch(() => {
+      result.innerText = "Currency conversion failed. Try again later.";
+    });
+}
+
+function getTime() {
+  const city = document.getElementById("timeCity").value.trim();
+  fetch(`https://worldtimeapi.org/api/timezone`)
+    .then(res => res.json())
+    .then(timezones => {
+      const match = timezones.find(tz => tz.toLowerCase().includes(city.toLowerCase()));
+      if (match) {
+        fetch(`https://worldtimeapi.org/api/timezone/${match}`)
+          .then(res => res.json())
+          .then(data => {
+            const time = new Date(data.datetime).toLocaleTimeString();
+            document.getElementById("timeResult").textContent = `Local time in ${city}: ${time}`;
+          });
+      } else {
+        document.getElementById("timeResult").textContent = "City not found!";
+      }
+    });
+}
+document.getElementById('trackFlight').addEventListener('click', () => {
+  const flightNum = document.getElementById('flightNumber').value.trim();
+  const resultDiv = document.getElementById('flightResult');
+  if (!flightNum) return resultDiv.textContent = 'Enter a flight number.';
+
+  const apiKey = '1c49ca544bc41c3ea36540bd80095465';
+  const url = `https://api.aviationstack.com/v1/flights?access_key=${apiKey}&flight_iata=${encodeURIComponent(flightNum)}&limit=1`;
+
+  resultDiv.textContent = 'Fetching…';
+  fetch(url)
+  `https://api.aviationstack.com/v1/flights?access_key=${apiKeyFlight}&flight_iata=${encodeURIComponent(flightNum)}&limit=1`;
+
+    then(res => res.json())
+    .then(json => {
+      if (!json.data || !json.data.length) {
+        resultDiv.textContent = 'No data found.';
+        return;
+      }
+      const f = json.data[0];
+      resultDiv.innerHTML = `
+        <strong>${f.airline.name} ${f.flight.iata}</strong><br>
+        From: ${f.departure.airport} (${f.departure.iata})<br>
+        To: ${f.arrival.airport} (${f.arrival.iata})<br>
+        Status: ${f.flight_status}<br>
+        Departure: ${new Date(f.departure.estimated).toLocaleString()}<br>
+        Arrival: ${new Date(f.arrival.estimated).toLocaleString()}
+      `;
+    })
+    .catch(err => resultDiv.textContent = 'Error retrieving data.');
+});
+fetch(url)
+  .then(res => res.json())
+  .then(json => {
+    console.log(json); // <-- See actual data
+    if (!json.data || !json.data.length) {
+      resultDiv.textContent = "No data found or invalid flight number.";
+      return;
+    }
+    const f = json.data[0];
+    resultDiv.innerHTML = `
+      <strong>${f.airline.name} ${f.flight.iata}</strong><br>
+      From: ${f.departure.airport} → To: ${f.arrival.airport}<br>
+      Status: ${f.flight_status}`;
+  })
+  .catch(() => {
+    resultDiv.textContent = "Error fetching flight data.";
+  });
